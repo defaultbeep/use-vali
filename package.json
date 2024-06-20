@@ -1,7 +1,7 @@
 {
   "name": "use-vali",
-  "version": "1.0.0",
-  "description": "Client side form validation with Zod alongside server actions",
+  "version": "0.0.1",
+  "description": "Form validation lib that works in tandem with useFormState",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

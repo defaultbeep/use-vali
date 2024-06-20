@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "build": "tsup ./src",
+    "build": "tsup",
     "prettier": "npx prettier . --check",
     "prettier:write": "npx prettier --write .",
     "lint": "eslint src/",

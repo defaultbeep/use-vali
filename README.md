@@ -137,5 +137,10 @@ export function LoginForm() {
     </form>
   );
 }
-
 ```
+
+## Troubleshooting
+
+If you encounter the TS error `TS2589: Type instantiation is excessively deep and possibly infinite` please set your version of `zod` to `3.22.4`.
+
+For more info: https://github.com/colinhacks/zod/issues/3435

@@ -4,6 +4,17 @@
 
 `npm install use-vali`
 
+## About
+
+`useVali` is a hook that validates your form with a zod schema.
+
+Its goal is to:
+
+1. **Honour the progressive enhancement strategy**
+2. Support the same schema as your server
+3. Be easy to use and understand
+4. Work with any form field
+
 ## Usage
 
 1. Create a schema using Zod

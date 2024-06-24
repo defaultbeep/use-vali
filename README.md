@@ -30,7 +30,7 @@ export const schema = z.object({
 
 ```
 
-2. Create a server action that validates the form. If invalid return the data (in a specific structure) back to the client or do whatever you need to do if its valid.
+2. Create a server action that validates the form.
 
 ```typescript
 // components/LoginForm/actions.ts
@@ -52,6 +52,9 @@ export async function login(
   const result = schema.safeParse(values);
 
   if (result.success !== true) {
+
+    // when invalid return the errors from zod
+    // also set a `isSubmitted` flag to true
     return {
       values,
       fieldErrors: result.error.format(),
@@ -59,14 +62,13 @@ export async function login(
     };
   }
 
+  // when valid do what you need to do
   redirect("/somewhere");
 }
 
 ```
 
-3. (Optional Step) Create or import nice field components that let you conditionally render errors
-
-Note: Vali works with any standard form field (input, select, textarea)
+3. (Optional Step) Create or import nice field components that let you conditionally render inline errors (Vali works with any standard form field eg input, select and textarea)
 
 ```tsx
 // components/TextField.tsx
@@ -96,7 +98,7 @@ export const TextField = ({ label, errors, touched, ...inputProps }: Props) => {
 
 ```
 
-3. Create a form component that uses `useFormState` to wrap your server action and `useVali` to manage the client state
+4. Create a form component that uses `useFormState` to wrap your server action and `useVali` to bind and manage the client state
 
 ```tsx
 // components/LoginForm/LoginForm.tsx
@@ -109,13 +111,13 @@ import { TextField } from "@/components/TextField/TextField";
 import { Button } from "@/components/Button/Button";
 
 export function LoginForm() {
-  // bind the `action` returned to your form
+  // bind the returned `action` to your form
   const [serverState, action] = useFormState(login, {});
 
-  // spread the returned `vali` object properties into your form
+  // bind by spreading the returned `vali` object into your form
   const { state, vali } = useVali(schema, serverState);
 
-  // the `state` object contains the current state of the form
+  // the returned `state` object contains the current state of the form
 
   /*
     state = {

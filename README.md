@@ -21,7 +21,7 @@
 
 [Example for forms that submit to an endpoint (including same page)](https://codesandbox.io/p/devbox/vali-pages-demo-32c7v7?file=%2Fpages%2Fcontacts%2Fnew%2Findex.tsx%3A12%2C1)
 
-### Tutorial
+## Tutorial
 
 [Progressive enhancement with server and client validation ](https://www.youtube.com/watch?v=a0yBqZxWxQ4)
 

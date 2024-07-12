@@ -1,6 +1,6 @@
 {
   "name": "use-vali",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Form validation lib that works in tandem with useFormState",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

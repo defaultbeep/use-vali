@@ -98,11 +98,27 @@ export function useVali<FV>(schema: z.Schema<FV>, serverState: State<FV>) {
     }
   };
 
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+    const result = schema.safeParse(state.values || {});
+
+    if (!result.success) {
+      e.preventDefault();
+      const errors = result.error.format();
+      setState({
+        ...state,
+        fieldErrors: { ...errors, _errors: undefined },
+        formErrors: errors._errors,
+        isSubmitted: true,
+      });
+    }
+  };
+
   return {
     state,
     vali: {
       onChange: handleChange,
       onBlur: handleBlur,
+      onSubmit: handleSubmit,
     },
   };
 }

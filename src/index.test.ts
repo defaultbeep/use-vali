@@ -11,6 +11,7 @@ function mockEvent(name: string, value: string): any {
       name,
       value,
     },
+    preventDefault: () => {},
   };
 }
 
@@ -131,6 +132,24 @@ describe("useForm", () => {
       expect(result.current.state.values?.address?.line1).toEqual(
         "1 Main Street",
       );
+    });
+  });
+
+  describe("when user submits the form", () => {
+    it("Should validate the form and update the state with the errors and isSubmitted as true", () => {
+      const serverState = {};
+      const schema = z.object({ name: z.string().min(5) });
+      const { result } = renderHook(() => useVali(schema, serverState));
+
+      act(() => {
+        result.current.vali.onSubmit(mockEvent("", ""));
+      });
+
+      expect(result.current.state.formErrors).toEqual([]);
+      expect(result.current.state.fieldErrors?.name?._errors).toEqual([
+        "Required",
+      ]);
+      expect(result.current.state.isSubmitted).toBe(true);
     });
   });
 });
